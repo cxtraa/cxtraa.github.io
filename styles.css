@@ -19,12 +19,6 @@
     z-index: 1000;
 }
 
-.card-img-top {
-    width: 800px;
-    height: 400px;
-    object-fit: cover;    
-}
-
 body {
     overflow-y: scroll;
     margin: 0;
