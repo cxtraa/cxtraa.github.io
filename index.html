@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="icon" href="https://i.ibb.co/z5cP0Jq/books-256.png">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-3-typeahead/4.0.2/bootstrap3-typeahead.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel ="stylesheet" href ="/styles.css">
+    <title>The Enchiridion</title>
+</head>
+
+<body>
+    <div class = "navigation"></div>
+
+    <!--CONTENT STARTS HERE-->
+    <div id="section1" class="container mt-7">
+        <h2>Welcome to The Enchiridion!</h2>
+        <p>This website is a collection of articles on interesting topics
+            in maths, physics, computer science, and AI. The
+            articles range in complexity from fundamentals to the latest
+            research in the field. Articles on computer science and AI include
+            code where relevant. I will also be publishing my personal research
+            here, with a focus on AI alignment. My area of research is in
+            mechanistic interpretability, with a focus on investigating the
+            causes for polysemanticity within neural networks. I'm inspired by
+            work from Neel Nanda, such as <a href = "https://transformer-circuits.pub/2023/monosemantic-features/index.html">'Towards Monosemanticity'</a>, which
+            explores the idea of superposition leading to polysemanticity.</p>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 mt-2">
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control rounded" id = "searchBar" placeholder="Search for an article..." autocomplete = "off">
+                    <div class="input-group-append">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        $('#searchBar').typeahead({
+            source: function(query, process) {
+                $.ajax({
+                    url: '/Articles/articles.json',
+                    dataType: 'json',
+                    success: function(data) {
+                        var titles = data.map(function(article) {
+                            return article.title;
+                        });
+                        process(titles);
+                    }
+                });
+            },
+
+            afterSelect: function(item){
+                $.ajax({
+                    url: '/Articles/articles.json',
+                    dataType: 'json',
+                    success: function(data) {
+                        var selectedArticle = data.find(function(article) {
+                            return article.title === item;
+                        });
+
+                        if (selectedArticle) {
+                            window.location.href = selectedArticle.link;
+                        }
+                    }
+                });
+            }
+        });
+    </script>
+
+    <div id="section2" class="container mt-2">
+        <h2>Featured articles</h2>
+        <div class = "row mt-3">
+            <div class = "col-md-6">
+                <div class = "card mb-4">
+                    <div class = "card-body">
+                        <h5 class = "card-title">Entropy is everywhere</h5>
+                        <p class = "card-title">How entropy spans thermodynamics, machine learning, and information theory.</p>
+                        <a href = "/Articles/Physics/Thermodynamics/entropy.html" class = "btn btn-standard">Read more</a>
+                    </div>
+                    <img src = "https://scitechdaily.com/images/Entropy-Illustration.jpg" class = "card-img-top" alt = "featured-article">
+                </div>
+            </div>
+
+            <div class = "col-md-6">
+                <div class = "card mb-4">
+                    <div class = "card-body">
+                        <h5 class = "card-title">Vector calculus</h5>
+                        <p class = "card-title">The language of Maxwell's equations of electromagnetism and Navier-Stokes' equations of fluid flow.</p>
+                        <a href = "/Articles/Mathematics/Calculus/vec_calc.html" class = "btn btn-indigo">Read more</a>
+                    </div>
+                    <img src = "https://i.ibb.co/JtZkrQN/vec-calc.jpg" class = "card-img-top" alt = "featured-article">
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--CONTENT ENDS HERE-->
+
+    <div class = "footer"></div>
+
+    <script>
+        $(document).ready(function(){
+            $('.navigation').load('/Templates/navbar.html');
+            $('.footer').load('/Templates/footer_page.html');
+        });
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,41 @@
+.home_navbar {
+    background-color: #00203f;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+}
+
+.btn{
+    background-color: #00203f;
+    color: white;
+}
+
+.footer{
+    background-color: #00203f;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    z-index: 1000;
+}
+
+.card-img-top {
+    width: 100%;
+    height: 16vw;
+    object-fit: fill;
+}
+
+body {
+    overflow-y: scroll;
+    margin: 0;
+    padding: 0;
+}
+
+.article {
+    margin-top: 5rem;
+    margin-bottom: 10rem;
+}
+
+.mt-7 {
+    margin-top: 5rem;
+}
