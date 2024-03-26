@@ -6,4 +6,4 @@ has_children: true
 
 # Mathematics
 
-This section discusses the field of mathematics, typically with a physics or machine learning focus. For example, in my article on chaos theory, I spend a great deal of time discussing the physical consequences of the theory and its connections to information theory. The motivation for this is to give the reader a clear understanding of why we should even care about the theory presented.
+Anything cool that I find maths-related. Sometimes the maths will be in the context of an applied field, like physics or machine learning, but other times, I just like to write about interesting pure maths.

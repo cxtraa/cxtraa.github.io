@@ -1,7 +1,7 @@
 ---
 title: 'Transformers'
 layout: post
-parent: Artifical intelligence
+parent: Machine learning
 nav_order: 2
 ---
 

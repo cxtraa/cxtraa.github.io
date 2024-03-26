@@ -6,6 +6,9 @@ url: https://cxtraa.github.io
 
 color_scheme: colours
 
+plugins:
+  - jekyll-scholar
+
 # Enable or disable the site search
 # Supports true (default) or false
 search_enabled: true
@@ -32,3 +35,23 @@ search:
   # Enable or disable the search button that appears in the bottom right corner of every page
   # Supports true or false (default)
   button: false
+
+callouts_level: quiet # or loud
+callouts:
+  highlight:
+    color: yellow
+  important:
+    title: Important
+    color: blue
+  new:
+    title: New
+    color: green
+  note:
+    title: Note
+    color: purple
+  warning:
+    title: Warning
+    color: red
+  definition:
+    title: Definition
+    color: purple

@@ -1,7 +1,7 @@
 ---
 title: 'Tutorial: CNN model with hyperparameter sweep'
 layout: post
-parent: Artifical intelligence
+parent: Machine learning
 nav-order: 3
 ---
 
