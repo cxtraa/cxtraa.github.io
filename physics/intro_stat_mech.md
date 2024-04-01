@@ -65,10 +65,15 @@ In statistical mechanics, we present the following formula for entropy:
 
 $$ S_B = k_B \ln(\Omega_{N, U}) $$
 
+{: .definition }
+> The **Boltzmann entropy** of a system is:
+> 
+> $$ S_B = k_B \ln(\Omega_{N, U}) $$
+
 Entropy is a measure of our uncertainty about a system. The greater the number of available microstates of a system, the more uncertain we are about which microstate is actually the microstate the system is in at that instant in time, and hence the entropy should intuitively be larger, which is exact what the statistical entropy predicts. Recall the Second Law of Thermodynamics:
 
 {: .definition }
-> The Second Law states that the entropy of an isolated system must either increase over time or remain constant. When the entropy of a system is maximised, the system is said to be in **thermodynamic equilibrium**. 
+> The **Second Law** states that the entropy of an isolated system must either increase over time or remain constant. When the entropy of a system is maximised, the system is said to be in **thermodynamic equilibrium**. 
 
 One of the key postulates of statistical mechanics is that at equilbrium (when $$ S $$ is maximised), *all microstates are equally probable*. This means that the microstate where all of the internal energy $$ U $$ is stored in a single particle, and the rest of the particle sit dead in $$ E_0 $$ is equally probable to the one where the energy is evenly distributed between the particles. However, there are many more permutations where the energy is *almost* evenly distributed between the particles, so that is the microstate we tend to observe.
 
@@ -110,7 +115,7 @@ Now, let us take the natural logarithm of $$ W $$:
 
 $$
 \begin{align}
-\ln(W) &= \ln(\frac{N!}{N_0! \, N_1! \, \ldots \, N_{\infty}!}) \\
+\ln(W) &= \ln\left(\frac{N!}{N_0! \, N_1! \, \ldots \, N_{\infty}!}\right) \\
 &= \ln(N!) - \ln(N_0!) - \ln(N_1!) - ...
 \end{align}
 $$
@@ -188,33 +193,33 @@ where $$ Z $$ is an important quantity in statistical mechanics known as the **p
 
 $$ Z $$, the partition function seems very unassuming at the moment; it appears to only be a normalisation constant. It turns out that $$ Z $$ is a "magic box" that can give us all the major macroscopic quantities of a system, such as the internal energy $$ U $$ and the Helmholtz free energy $$ F $$. Let us begin to derive these "magic box relations".
 
-We begin by substituting the Boltzmann distribution for $$ p_i $$ in the Gibbs entropy equation:
+We begin by substituting the Boltzmann distribution for $$ p_i $$ in the Gibbs entropy equation for one particle:
 
 $$
 \begin{align}
-S_g &= -k_B N \sum_{j} p_j \ln(p_j) \\
-&= -k_B N \sum_{j} \frac{e^{-\beta E_j}}{Z} \ln\left(\frac{e^{-\beta E_j}}{Z}\right) \\
-&= k_B N \sum_{j} \frac{e^{-\beta E_j}}{Z} \left(\beta E_j + \ln(Z)\right) \\
-&= k_B N \beta \sum_{j} p_j E_j + k_B N \ln(Z) \sum_{j} p_j \\
-&= k_B N \beta U + k_B N \ln(Z) \\
+S_g &= -k_B \sum_{j} p_j \ln(p_j) \\
+&= -k_B \sum_{j} \frac{e^{-\beta E_j}}{Z} \ln\left(\frac{e^{-\beta E_j}}{Z}\right) \\
+&= k_B \sum_{j} \frac{e^{-\beta E_j}}{Z} \left(\beta E_j + \ln(Z)\right) \\
+&= k_B \beta \sum_{j} p_j E_j + k_B \ln(Z) \sum_{j} p_j \\
+&= k_B \beta U + k_B \ln(Z) \\
 F &= U - TS_g \\
-&= U + k_B N T \left( -\beta U - \ln(Z) \right) \\
-&= U - k_B N T \beta U - k_B N T \ln(Z) \\
-&= -k_B N T \ln(Z) \\
-&= -\frac{N}{\beta} \ln(Z)
+&= U + k_B T \left( -\beta U - \ln(Z) \right) \\
+&= U - k_B T \beta U - k_B T \ln(Z) \\
+&= -k_B T \ln(Z) \\
+&= -\frac{1}{\beta} \ln(Z)
 \end{align}
 $$
 
 Hence, the magic box of $$ Z $$ has given us the Helmholtz free energy F! $$ U $$, the internal energy, can be found through similar arguments. This is the second magic box relation:
 
-$$ U = -N \frac{\partial{\ln(Z)}}{\partial{\beta}} $$
+$$ U = - \frac{\partial{\ln(Z)}}{\partial{\beta}} $$
 
 {: .definition }
 > Using the **magic box relations**, we can obtain macroscopic quantities such as $$ U $$ and $$ F $$ of a thermodynamic system, from the partition function $$ Z $$:
 >
-> $$ U = -N \frac{\partial{\ln(Z)}}{\partial{\beta}} $$
+> $$ U = - \frac{\partial{\ln(Z)}}{\partial{\beta}} $$
 > 
-> $$ F = -\frac{N}{\beta} \ln(Z) $$
+> $$ F = -\frac{1}{\beta} \ln(Z) $$
 
 ## State degeneracy and phase space
 
@@ -234,6 +239,119 @@ This is not too bad for a system with discrete energy levels, such as an electro
 $$ Z = \int_{0}^{\infty} g(E) e^{-\beta E} \, dE $$
 
 In the continuous case, $$ g(E) = \frac{dN}{dE} $$, i.e. the number of particles N per unit energy.
+
+We will now make a slight detour and talk about **phase space**.
+
+{: .definition}
+> **Phase space** is a plot of momentum $$ \boldsymbol{p} $$ versus position $$ \boldsymbol{x} $$. It represents all possible states of a particle.
+
+For each particle, we can specify it with 6 coordinates $$(x, y, z, p_x, p_y, p_z)$$. Importantly, each coordinate is *unique* - it is impossible to have state degneracy in phase space because no two particles can occupy the same coordinate. This removes the need for $$ g(E) $$ which considerably simplifies things. Unfortunately, this means we're going to have to reformulate $$ Z $$, the partition function, yet *again*. Let's start by doing this for one particle in an ideal gas. The Hamiltonian of the particle is expressed as:
+
+$$ H = E_K + E_P $$
+
+where $$ E_K $$ is the kinetic energy, and $$ E_P $$ is the potential energy. Noting that $$ E_K = \frac{\|\boldsymbol{p}\|^2}{2m} $$, and that in an ideal gas, there are no intermolecular forces, we can say the following:
+
+$$
+\begin{align}
+H &= \frac{\|\boldsymbol{p}\|^2}{2m} \\
+&= \frac{p_x^2 + p_y^2 + p_z^2}{2m}
+\end{align}
+$$
+
+The Hamiltionian is just the energy of the particle, and so we can substitute it into the Boltzmann distribution in $$ Z $$, expressing $$ Z $$ as a hextuple integral over $$ \boldsymbol{x} $$ and $$ \boldsymbol{p} $$:
+
+$$
+Z = \frac{1}{h^3} \int_{V} \int_{\mathbb{R}^3} e^{-\beta \frac{p_x^2 + p_y^2 + p_z^2}{2m}} \, dp_x \, dp_y \, dp_z \, dx \, dy \, dz
+$$
+
+(There are actually six integrals here but I've written them as two for brevity.) Noting that the function we are integrating does not depend on $$ \boldsymbol{x} $$, we can rewrite our problem as a triple integral:
+
+$$
+\begin{align}
+Z &= \frac{V}{h^3} \int_{-\infty}^{+\infty} \int_{-\infty}^{+\infty} \int_{-\infty}^{+\infty} e^{-\beta \frac{p_x^2 + p_y^2 + p_z^2}{2m}} \, dp_x \, dp_y \, dp_z\ \\
+&= \frac{V}{h^3} \left( \int_{-\infty}^{+\infty} e^{-\beta \frac{p_x^2}{2m}} \, dp_x \right) \left( \int_{-\infty}^{+\infty} e^{-\beta \frac{p_y^2}{2m}} \, dp_y \right) \left( \int_{-\infty}^{+\infty} e^{-\beta \frac{p_z^2}{2m}} \, dp_z \right) \\
+&= \frac{V}{h^3} \left( \frac{2 \pi m}{\beta} \right)^{\frac{3}{2}}
+\end{align}
+$$
+
+where the final result was derived by using the standard result that $$ \int_{-\infty}^{+\infty} e^{-ax^2} \, dx = \sqrt{\frac{\pi}{a}} $$, which is the famous Gaussian integral.
+
+How, from this, can we obtain the partition function for $$ N $$ particles, $$ Z_n $$? Recall that the partition function sums over states. If there are $$ N_1 $$ states available for 1 particle, then for $$ N $$ particles, we have $$ \frac{N_1^N}{N!} $$ available microstates of the system. The expression $$ \frac{1}{N!} $$ is known as the *Gibbs factor*, and accounts for the fact that the particles are **indistinguishable** from each other; we must therefore divide by the number of permutations of $$ N $$ particles, which is $$ N! $$. It follows that:
+
+$$ Z_N = \frac{Z_N^N}{N!} $$
+
+{: .definition}
+> The **N-particle partition** function for an ideal gas is:
+>
+> $$ Z_N = \frac{1}{N!} \left( \frac{V}{h^3} \left( \frac{2 \pi m}{\beta} \right)^{\frac{3}{2}} \right)^N $$
+
+The "magic box" relations we derived earlier are still valid for our shiny new $$ Z_N $$ - so let's use them! Recall that:
+
+$$ U = -\frac{\partial \ln Z}{\partial \beta} $$
+
+I won't go through all the algebra here, but the result we obtain is:
+
+$$ U = \frac{3}{2} N k_B T $$
+
+which is a familiar result from thermodynamics. Finally, after building up from concepts like microstates and entropy, we have reached the same predictions as classical thermodynamics, under a completely different theory.
+
+## The equipartition theorem and the Dulong-Petit Law
+
+It's probably about time we discussed what a **degree of freedom** is.
+
+{: .definition}
+> For a Hamiltonian with $$ f $$ quadratic terms, the number of **degrees of freedom** is also $$ f $$. 
+
+Informally, we can think about degrees of freedom as the number of directions in which particles are free to move in.
+
+- Ideal monatomic gas: $$ f = 3 $$ (three spatial degrees)
+- Ideal diatomic gas: $$ f = 5 $$ (three spatial, two rotational)
+
+Note that for a diatomic gas we do not count rotation about the axis passing through the two atoms, because the moment of inertia about this axis is negligible.
+
+Armed with our new knowledge of degrees of freedom, let's derive the famous **equipartition theorem**. We'll begin by defining a very general Hamiltonian:
+
+$$ H(\boldsymbol{x}, \boldsymbol{p}) = ax^2 + by^2 + cz^2 + rp_x^2 + sp_y^2 + tp_z^2 $$
+
+For an ideal gas, $$ a = b = c = 0 $$, and $$ r = s = t = 1 $$, which is why the ideal gas has three degrees of freedom - it has three quadratic terms in its Hamiltonian. Let's substitute this into our integral for $$ Z_1 $$. We'll derive the general partition function for the canonical ensemble $$ Z_N $$, in much the same way as we did for the ideal gas case.
+
+$$ 
+\begin{aligned}
+Z_1 &= \frac{1}{h^3} \int_{-\infty}^{+\infty} \int_{-\infty}^{+\infty} \int_{-\infty}^{+\infty} \int_{-\infty}^{+\infty} \int_{-\infty}^{+\infty} \int_{-\infty}^{+\infty} e^{-\frac{\beta}{2m} \left( ax^2 + by^2 + cz^2 + rp_x^2 + sp_y^2 + tp_z^2 \right)} \, dx \, dy \, dz \, dp_x \, dp_y \, dp_z \\
+&= \left( \frac{\pi}{\beta h} \right)^3 \frac{1}{abc \, rst}
+\end{aligned}
+$$
+
+The integration is performed very similarly to before. We use the same relation $$ Z_N = \frac{Z_1^N}{N!} $$, and substitute into the equation $$ U = -\frac{\partial \ln Z}{\partial \beta} $$, to obtain the following result:
+
+$$ U = \frac{1}{2} \cdot 6 \cdot N k_B T $$
+
+Pay close attention to the $$ 6 $$. It came from the fact that we had 6 quadratic terms in our Hamiltonian. It follows that if we have $$ f $$ quadratic terms, the internal energy would be $$ \frac{1}{2} f N k_B T $$. In other words, for each extra degree of freedom $$ f $$, we obtain $$ \frac{1}{2} k_B T $$ energy per particle on average. This is the **equipartition theorem**.
+
+{: .definition}
+> The **equipartition function** states that for a system with $$ f $$ degrees of freedom, the total internal energy $$ U $$ is given by:
+>
+> $$ U = \frac{1}{2} f N k_B T $$
+
+- Ideal monatomic gas: $$ U = \frac{3}{2} N k_B T $$
+- Ideal diatomic gas: $$ U = \frac{5}{2} N k_B T $$
+
+We will end with a brief discussion on the **Dulong-Petit Law**. The Dulong-Petit law concerns metallic lattices. In a metallic lattice, we have positively charged ions surrounded by a sea of delocalised electrons which can move freely. We can model the electrons as a gas, with six degrees of freedom (there are six terms in the Hamiltonian, $$x, y, z, p_x, p_y, p_z$$, as there are certainly forces acting on the electrons, unlike an ideal gas). Using the equipartition theorem:
+
+$$ U = 3 N k_B T $$
+
+Noting that $$ C_v $$, the heat capacity at constant volume, is just $$ \frac{\partial{U}}{\partial{T}} $$:
+
+$$ C_v = \frac{\partial{U}}{\partial{T}} = 3 N k_B $$
+
+And the molar heat capacity at constant volume, $$ c_v = \frac{C_v}{n} $$ is:
+
+$$ c_v = \frac{3 N k_B}{n} = \frac{3 n R}{n} = 3R \approx 24.9 \: \text{J} \: \text{mol}^{-1} \: \text{K}^{-1} $$
+
+This suggests that all metals should have the same molar heat capacity at constant volume, which is the Dulong-Petit Law. Unfortunately, the Dulong-Petit Law is generally incorrect, and is only asymptotically true in the limit as $$ T \to \infty $$.
+
+{: .definition}
+> The **Dulong-Petit Law** (erroneously) postulates that all metals have $$ c_v = 3R $$.
 
 References
 ----------
