@@ -1,7 +1,7 @@
 ---
 title: 'Spam classification model'
 layout: post
-parent: Projects
+parent: ML research and projects
 nav-order: 1
 ---
 
