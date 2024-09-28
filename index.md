@@ -16,7 +16,7 @@ A collection of articles on maths, physics, and machine learning.
 
 Hi, I'm Moosa, an undergraduate at the University of Cambridge. I write here about anything I find interesting within mathematics, physics, and machine learning. Some of the topics I've written about include statistical mechanics, information theory, and singular learning theory.
 
-I'm currently doing research at CAISH (Cambridge AI Safety Hub) in singular learning theory (SLT). This is a novel field that hypothesises that models generalise by converging to degenerate singularities, where they can reduce their effective dimension and obtain better performance on unseen data. Right now, I'm researching the training dynamics of natural gradient descent to better understand the geometry of the loss landscape.
+I'm currently looking for internships and research opportunities in machine learning and AI safety. I previously did work on developmental interpretability and singular learning theory (SLT) where I investigated the training dynamics of natural gradient descent and stochastic gradient descent through the lens of the local learning coefficient. This work culminated in a research paper which can be found [here](https://arxiv.org/abs/2409.04913).
 
 ## Contact
 
